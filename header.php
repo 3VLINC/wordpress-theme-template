@@ -6,6 +6,7 @@
 
 	<head>
 		<meta charset="utf-8">
+
 		<!-- Google Chrome Frame for IE -->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
@@ -27,105 +28,102 @@
 		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
 
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
+		
+		<?php wp_head(); ?>
 
-		<!-- wordpress head functions -->
+		
+		<!-- fonts -->
+		
+		<!-- end of fonts -->
+		
+		
+		<!-- Google Analytics -->
+		
+		<!-- end of Google Analytics -->
+		
+		
+		<!-- Browser support scripts -->
 		
 		<?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
 
-		<!--[if lt IE 9]>
+		<!-- [if lt IE 9]>
 	
 			<script src="<?php echo get_template_directory_uri(); ?>/library/js/html5.js" type="text/javascript"></script>
 	
 			<script src="<?php echo get_template_directory_uri(); ?>/library/js/css3-mediaqueries.js" type="text/javascript"></script>
 
-		<![endif]-->
+		<![endif] -->
 		
-		<?php wp_head(); ?>
-		
-		<!-- end of wordpress head -->
+		<!-- end of browser support scripts -->
 
-		<!-- Google Analytics -->
-				
-		
-		<!-- end analytics -->
 
 	</head>
 
 	<body <?php body_class(); ?>>
-
+	
 		<div id="container">
 
-			<header id="site-header" role="banner">
+			<header id="header" role="banner">
 
-				<div id="inner-header">
+				<div id="inner-header" class="wrap clearfix">
 					
-					<div class="social-media">
-						
-							<ul class="social-icons">
-	
-								<li class="facebook">
-								
-									<a href="#" target="_blank" title="Follow us on Facebook">Facebook</a>
-									
-								</li>
-								
-								<li class="twitter">
-								
-									<a href="#" target="_blank" title="Follow us on Twitter">Twitter</a>
-									
-								</li>
-								
-								<li class="instagram">
-								
-									<a href="#" target="_blank" title="We are on Instagram">Instagram</a>
-									
-								</li>
-						
-							</ul><!-- end .social-icons -->
-						
-					</div>
-
-					<!-- different div for home page -->
-					<?php
-						
-						if (is_front_page()) {
-						
-					?>	
+					<?php get_search_form(); ?>
+			
+					<div id="site-logo">
 					
-						<div id="site-logo">
-
+					<!-- different logo, links and h1 structure in Home page -->	
+					
+						<?php
+					
+							if (is_front_page()) {
+					
+						?>
+					
+							<div id="logo">						 
+							
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png" />
+									
+							</div>
+							
 							<h1><?php bloginfo('name'); ?></h1>
 							
-						</div><!-- end #site-logo -->
+						<?php					
+					
+							} else {
+				
+						?>
 							
-					<?php					
-						
-						} else {
-					
-					?>
-						
-						<div id="site-logo">
-
-							<a href="<?php echo home_url(); ?>" rel="nofollow">
+							<div id="logo">
+							
+								<a href="<?php echo home_url(); ?>">
 								
+									<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png" />
+								
+								</a>
+							
+							</div>
+							
+							<a href="<?php echo home_url(); ?>" class="h1">
+							
 								<?php bloginfo('name'); ?>
-								
-							</a>
 						
-						</div><!-- end #site-logo -->
-						
-					<?php
+							</a>							
+							
+							
+						<?php
+				
+							}
 					
-						} //end else
-						
-					?>
+						?>
 
-
-					<nav role="navigation" id="main-nav">
+						
+					</div> <!-- end #site-logo -->
 					
-						<?php wp_nav_menu( array('theme_location' => 'header' )); ?>
+					<div id="site-description">
 					
-					</nav>
+						<?php bloginfo('description'); ?>
+						
+					</div>
 
 				</div> <!-- end #inner-header -->
 

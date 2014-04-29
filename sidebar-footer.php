@@ -1,12 +1,12 @@
-				<div id="header-sidebar" class="sidebar" role="complementary">
+				<div id="footer-sidebar" class="sidebar" role="complementary">
 				
 					<div class="inner-wrap">
 				
 						<!-- <h3 class="sidebar-title"></h3> -->
 	
-						<?php if ( is_active_sidebar( 'main-sidebar' ) ) {
+						<?php if ( is_active_sidebar( 'sidebar-footer' ) ) {
 	
-								dynamic_sidebar( 'main-sidebar' );
+								dynamic_sidebar( 'sidebar-footer' );
 							
 								} else {
 								

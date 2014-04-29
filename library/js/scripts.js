@@ -1,6 +1,6 @@
 /*
 Bones Scripts File
-Author: Eddie Machado
+Author: Andrés de Rojas over Eddie Machado's original WordPress Bones theme's script.js file.
 
 This file should contain any js scripts you want to add to the site.
 Instead of calling it in the header or throwing it inside wp_head()
@@ -106,3 +106,91 @@ jQuery(document).ready(function($) {
 	w.addEventListener( "orientationchange", restoreZoom, false );
 	w.addEventListener( "devicemotion", checkTilt, false );
 })( this );
+
+
+
+/******************/
+/** ADDED BY 3VL **/
+/******************/
+
+//Flexslider initialization
+jQuery(document).ready(
+
+	function($) {
+		init();
+		function init() {
+		
+				$('.gallery').wrapInner('<div id="slider" class="flexslider"><div class="slides"></div></div>');
+				
+				var gallery_clone = $('.gallery .flexslider').clone();
+				
+				gallery_clone.attr('id','carousel');
+				
+				$('.gallery .flexslider').after(gallery_clone);
+				
+				$('.gallery br').remove();
+								
+				$('#carousel').flexslider(
+					{
+						selector : '.slides > .gallery-item',
+						animation: 'slide',
+						controlNav: false,
+						animationLoop: false,
+						slideshow: false,
+						itemWidth: 150,
+						itemMargin: 5,
+						asNavFor: '#slider'
+						
+					}
+				
+				);
+				
+				$('#slider').flexslider(
+					{
+						selector : '.slides > .gallery-item',
+						slideshow: true,
+						controlNav: false,
+						sync: '#carousel',
+						smoothHeight: true
+					}
+				);
+				
+			}
+			
+		}
+		
+);
+
+//Collapsible Widgets
+jQuery(document).ready(
+
+	function($) {
+		
+		init();
+		
+		function init() {
+			
+			$('#header-sidebar .widget .widget-content').hide();
+			
+			$('#header-sidebar .widget .widget-title').on(
+				'click',
+				onWidgetTitleClicked
+			);
+			
+			
+		}
+		
+		function onWidgetTitleClicked(e) {
+			
+			$(this).closest('.widget').find('.widget-content').slideToggle();
+			
+			$(this).closest('.widget').siblings().find('.widget-content').slideUp();
+			
+			
+		}
+		
+			
+	}	
+		
+		
+);

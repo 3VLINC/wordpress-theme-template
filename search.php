@@ -3,15 +3,26 @@
 			<div id="content">
 
 				<div id="inner-content">
-
-					<div id="main" role="main">
+				
+					<?php get_sidebar(); ?>
+						
+					<div id="main">
 					
-						<h1 class="archive-title">Search Results for: <?php echo get_search_query(); ?></h1>
-
+						<div class="inner-wrap">
+					
 							<?php 
 							// loop starts
 							
 								if ( have_posts() ) {
+								
+							?>
+													<h1 class="archive-title">
+						
+							Search for "<span class="search-query"> <?php echo get_search_query(); ?> </span>" returned these results:
+							
+						</h1>
+						
+							<?php
 							
 									while ( have_posts() ) {
 									
@@ -19,80 +30,111 @@
 										
 							?>
 							
-								<article id="post-<?php the_ID(); ?>" class="post" role="article">
-	
-									<header class="article-header">
-	
-										<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-										
-										<p class="byline">
-										
-											<?php echo 'Posted by' . get_the_author() . 'on' . get_the_time('l F jS, Y'); ?>
-											
-										</p><!-- end .byline -->
-	
-									</header> <!-- end article header -->
-	
-									<section class="entry-content">
+						<article id="post-<?php the_ID(); ?>" class="post" role="article">
+
+							<header class="article-header">
+
+								<h2 class="post-title"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+								<div class="byline">
 									
-										<?php the_content(); ?>
-										
-									</section> <!-- end .entry-content -->
-	
-									<footer class="article-footer">
+									<?php the_time('j F, Y'); ?>
 									
-										<p class="tags"><?php the_tags(); ?>:</p>
-	
-									</footer> <!-- end a.rticle-footer -->
-	
-									<?php // comments_template(); // uncomment if you want to use them ?>
-	
-								</article> <!-- end article -->
-								
-								<?php 	
-								
-										} // end while
+								</div>
+
+							</header> <!-- end article header -->
+
+							<section class="article-content">
+																
+								<?php 
+							
+									if ( has_post_thumbnail() ) {
 									
-									} // end if
-									
-									else {
-								
 								?>
+									<div class="featured-img">
 									
-								<article id="post-not-found" class="post">
+									<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail('full-width'); ?></a>
+									
+									</div>
+									
 								
-									<header class="article-header">
+								<?php
+								
+									}
 									
-										<h1>Post not found</h1>
+									the_excerpt();
+									
+								?>
+																				
+								
+							</section> <!-- end article section -->
+
+							<footer class="article-footer">
+
+							</footer> <!-- end article footer -->
+
+						</article> <!-- end article -->
+							
+							<?php 	
+						
+								} // end while
+							
+							} // end if
+							
+							else {
+						
+						?>
+								
+						<article id="post-not-found" class="post">
+						
+							<header class="article-header">
+							
+								<h1 class="not-found">Oops...</h1>
+								
+							</header>
+							
+							<section class="entry-content">
+							
+								<p>Your search didn't return any results. Try again (with a diferent query...)</p>
+								
+								
+									<form method="get" id="search" action="<?php bloginfo('url'); ?>/">
 										
-									</header>
-									
-									<section class="entry-content">
-									
-										<p>Sorry, the content you requested doesn't exist or is not available at this moment.</p>
+										<div id="searchform-2">
 										
-									</section>
+											<input type="text" value="<?php the_search_query(); ?>" name="s" id="search-text-2" />
+	
+											<input type="submit" id="search-submit-2" value="Search again" />
+	
+										</div>
 									
-									<footer class="article-footer">
-									
-									</footer>
-									
-								</article>
+									</form>
+															
+							</section>
+							
+							<footer class="article-footer">
+							</footer>
+							
+						</article>
+							
 							
 							<?php 
+						
+							} //end else 
 							
-								} //end else 
-								
-							// loop ends
-							?>
+						// loop ends
+						?> 							
 							
-							<div id="pagination"><p><?php posts_nav_link(); ?></p></div> 
+							<div id="pagination">
+								<p><?php posts_nav_link(); ?></p>
+							</div>
+	
+						</div> <!-- end #inner-wrap -->
+											
+					</div> <!-- end #main -->
+					
+					<?php get_sidebar(); ?>
 
-						</div> <!-- end #main -->
-
-						<?php get_sidebar(); ?>
-
-					</div> <!-- end #inner-content -->
+				</div> <!-- end #inner-content -->
 
 			</div> <!-- end #content -->
 

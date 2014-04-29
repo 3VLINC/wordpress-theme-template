@@ -60,34 +60,22 @@ TOOLS
 COLORS
 *********************/
 
-@color-base: #252525; // dark grey
-@color-base-inverse: #fff; // white
-@color-sage: #669933; // green
-
+/*
+@body:;
+@background:;
+@accent:;
+@accent-alt:;
+*/
 
 
 /*********************
 TYPOGRAPHY
 *********************/
+/*
 
-@font-face {
-	font-family: 'BreeSerif';
-	src: url('@{stylesheet_directory_uri}/library/fonts/BreeSerif-Regular.otf') format("opentype");
-}
-
-@font-face {
-	font-family: 'StMarie';
-	src: url('@{stylesheet_directory_uri}/library/fonts/StMarie-Thin.otf') format("opentype");
-}
-
-@headers: "BreeSerif",sans-serif;
-@body: "StMarie",sans-serif;
-@quote: "Arial",serif;
-
-/* text alignment */
-.text-left   { text-align: left; }
-.text-center { text-align: center; }
-.text-right  { text-align: right; }
+@headers:;
+@body:;
+*/
 
 
 /********************
@@ -109,12 +97,16 @@ PADDING
 	padding: 5px;
 }
 
-.padding-bottom-xl {
+.padding-bottom-xxl {
 	padding-bottom:40px;
 }
 
+.padding-bottom-xl {
+	padding-bottom:25px;
+}
+
 .padding-bottom-l {
-	padding-bottom:20px;
+	padding-bottom:15px;
 }
 
 .padding-bottom-m {
@@ -129,17 +121,33 @@ PADDING
 BORDERS
 *********************/
 
+.border-divider-title {
+	border-bottom: 4px solid @accent-light;
+}
+
+.border-divider-subtle {
+	border-bottom: 2px dashed @accent-light;
+}
+
+.border-divider-test {
+	border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
 
 /********************
 MARGINS
 *********************/
 
-.section-end-xl {
+.section-end-xxl {
 	margin-bottom: 40px;
 }
 
+.section-end-xl {
+	margin-bottom: 25px;
+}
+
 .section-end-l {
-	margin-bottom: 20px;
+	margin-bottom: 15px;
 }
 
 .section-end-m {
@@ -147,21 +155,10 @@ MARGINS
 }
 
 .section-end-s {
-	margin-bottom:5px;
+	margin-bottom: 5px;
 }
 
-
-/********************
-BACGROUNDS
-*********************/
-.bg-box-primary {
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top, #ffffff 0%, #f3e5bb 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#f3e5bb)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #ffffff 0%,#f3e5bb 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #ffffff 0%,#f3e5bb 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #ffffff 0%,#f3e5bb 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #ffffff 0%,#f3e5bb 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f3e5bb',GradientType=0 ); /* IE6-9 */
+.section-end-reset {
+	margin-bottom: 0px !important;
 }
 

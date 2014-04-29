@@ -9,7 +9,7 @@ LANGUAGE
 SCRIPTS & ENQUEUEING
 *********************/
 
-// loading LESS CSS
+// loading LESS CSS (you'll need this one for the theme to work!)
 
 add_action ('wp_enqueue_scripts','sitestyles');
 
@@ -21,16 +21,12 @@ function sitestyles () {
 
 add_action ('wp_enqueue_scripts','sitescripts');
 
+// loading Flexslider
+
 function sitescripts () { 
-	wp_register_script( 'site', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery'), '', 'all' );
+	wp_register_script( 'flexslider', get_stylesheet_directory_uri() . '/library/js/jquery.flexslider.js', array('jquery'), '', 'all' );
+	wp_register_script( 'site', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery', 'flexslider'), '', 'all' );
 	
-	wp_localize_script(
-		'site',
-		'site_vars', 
-		array(
-			'home' => site_url('/')
-		)
-	);
 	
 	wp_enqueue_script( 'site' );
 	
@@ -46,16 +42,28 @@ REGISTERING NEW ELEMENTS
 add_action ('widgets_init','sitesidebars');
 
 function sitesidebars () {
+		
 	register_sidebar (array(
-		'name' => 'Blog Sidebar',
-		'id' => 'blog-sidebar',
-		'description' => "This is the blog sidebar. It will show your widgets on the left sidebar in all blog pages, and nowhere else.",
-		'before_widget' => '<div class="widget">',
+		'name' => 'Main Sidebar',
+		'id' => 'main-sidebar',
+		'description' => "This is your main sidebar.",
+		'before_widget' => '<div class="widget %2$s" id="%1$s">',
+		'after_widget' => '</div></div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3><div class="widget-content">'
+		));
+		
+		register_sidebar (array(
+		'name' => 'Sidebar Footer',
+		'id' => 'sidebar-footer',
+		'description' => "This is the footer sidebar. It will show up at the bottom of the page.",
+		'before_widget' => '<div class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>'
 		));
 }
+
 
 
 //menus
@@ -64,23 +72,25 @@ add_action ('init','sitemenus');
 
 function sitemenus () {
 	
-	register_nav_menu( 'header', 'Main Menu' );
+	register_nav_menu( 'header', 'Header Menu' );
 	
 	register_nav_menu( 'footer', 'Footer Menu' );
 }
 
 // taxonomy
 
-// add new featured images sizes
+// featured images sizes
 
 add_theme_support( 'post-thumbnails' ); 
 
-//add_image_size( 'full-width', 640, 250, true );
+/* add_image_size( 'full-width', 750, 350, true ); */
+
 
 
 // custom post types
 
-//add_action( 'init', 'create_post_type' );
+/*
+add_action( 'init', 'create_post_type' );
 function create_post_type() {
 	register_post_type( 'custom-name',
 		array(
@@ -103,6 +113,7 @@ function create_post_type() {
 	);
 
 }
+*/
 
 
 
@@ -111,32 +122,29 @@ function create_post_type() {
 OTHER
 ********************/
 
-// remove extra 10px from wp-caption
-
-add_shortcode('wp_caption', 'fixed_img_caption_shortcode');
-add_shortcode('caption', 'fixed_img_caption_shortcode');
-function fixed_img_caption_shortcode($attr, $content = null) {
- if ( ! isset( $attr['caption'] ) ) {
- if ( preg_match( '#((?:<a [^>]+>\s*)?<img [^>]+>(?:\s*</a>)?)(.*)#is', $content, $matches ) ) {
- $content = $matches[1];
- $attr['caption'] = trim( $matches[2] );
- }
- }
- $output = apply_filters('img_caption_shortcode', '', $attr, $content);
- if ( $output != '' )
- return $output;
- extract(shortcode_atts(array(
- 'id' => '',
- 'align' => 'alignnone',
- 'width' => '',
- 'caption' => ''
- ), $attr));
- if ( 1 > (int) $width || empty($caption) )
- return $content;
- if ( $id ) $id = 'id="' . esc_attr($id) . '" ';
- return '<div ' . $id . 'class="wp-caption ' . esc_attr($align) . '" >' 
- . do_shortcode( $content ) . '<p class="wp-caption-text">' . $caption . '</p></div>';
+// removes 10px off bug in Caption images
+add_filter('img_caption_shortcode', 'my_img_caption_shortcode_filter',10,3);
+ 
+function my_img_caption_shortcode_filter($val, $attr, $content = null)
+{
+    extract(shortcode_atts(array(
+        'id'    => '',
+        'align' => 'aligncenter',
+        'width' => '',
+        'caption' => ''
+    ), $attr));
+     
+    if ( 1 > (int) $width || empty($caption) )
+        return $val;
+ 
+    $capid = '';
+    if ( $id ) {
+        $id = esc_attr($id);
+        $capid = 'id="figcaption_'. $id . '" ';
+        $id = 'id="' . $id . '" aria-labelledby="figcaption_' . $id . '" ';
+    }
+ 
+    return '<figure ' . $id . 'class="wp-caption ' . esc_attr($align) . '" style="width: '
+    . (int) $width . 'px">' . do_shortcode( $content ) . '<figcaption ' . $capid
+    . 'class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
-
-
-?>

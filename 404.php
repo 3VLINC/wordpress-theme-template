@@ -1,37 +1,54 @@
 <?php get_header(); ?>	
-		
+
 			<div id="content">
 
 				<div id="inner-content">
 				
-					<div id="page-header">
+					<?php get_sidebar(); ?>
+						
+					<div id="main">
 					
-						<h1>Error 404 - Page Not Found</h1>
+						<div class="inner-wrap">
+				
+							<article id="post-not-found" class="post">
 						
-					</div><!-- end #page-header -->
-												
-						<div id="main" role="main">
-						
-							<div class="inner-wrap">
-
-									<div class="entry-content">
-										
-										Sorry, the content you were looking for is not available or doesn't exist.
-						
-									</div><!-- .entry-content -->
+								<header class="article-header">
 								
-							</div><!-- end .inner-wrap -->
+									<h1 class="not-found">Error 404 - Page not found</h1>
+									
+								</header>
+								
+								<section class="entry-content">
+								
+									<p>The page you are looking doesn't exist!</p>
+									
+									<p>But don't worry, you can find good stuff to read going to the <a href="<?php echo home_url() ?>" title="Go to home page">home page</a> or using the search form below.</p>
+									
+										<form method="get" id="search" action="<?php bloginfo('url'); ?>/">
+											
+											<div id="searchform-2">
+											
+												<input type="text" value="<?php the_search_query(); ?>" name="s" id="search-text-2" />
+		
+												<input type="submit" id="search-submit-2" value="Find it for me!" />
+		
+											</div>
+										
+										</form>
+																
+								</section>
+								
+								<footer class="article-footer">
+								</footer>
 							
-						</div><!-- end #main -->
+							</article>
 							
-				<?php 
-						
-						} // end while
-	
-					} // end if
-				
-				?>
-				
+						</div> <!-- end #inner-wrap -->
+											
+					</div> <!-- end #main -->
+					
+					<?php get_sidebar(); ?>
+
 				</div> <!-- end #inner-content -->
 
 			</div> <!-- end #content -->
