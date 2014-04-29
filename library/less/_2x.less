@@ -1,0 +1,69 @@
+/******************************************************************
+Site Name: 
+Author: 
+
+Stylesheet: Retina Screens & Devices Stylesheet
+
+When handling retina screens you need to make adjustments, especially
+if you're not using font icons. Here you can add them in one neat
+place.
+
+******************************************************************/
+
+/* 
+
+EXAMPLE 
+Let's say you have an image and you need to make sure it looks ok
+on retina screens. Let's say we have an icon which dimension are
+24px x 24px. In your regular stylesheets, it would look something
+like this:
+
+.icon {
+	width: 24px;
+	height: 24px;
+	background: url(img/test.png) no-repeat;
+}
+
+For retina screens, we have to make some adjustments, so that image
+doesn't look blurry. So, taking into account the image above and the
+dimensions, this is what we would put in our retina stylesheet:
+
+.icon {
+	background: url(img/test@2x.png) no-repeat;
+	background-size: 24px 24px;
+}
+
+So, you would create the same icon, but at double the resolution, meaning 
+it would be 48px x 48px. You'd name it the same, but with a @2x at the end
+(this is pretty standard practice). Set the background image so it matches
+the original dimensions and you are good to go. 
+
+*/
+
+html {
+		
+	body,
+	body.page-template-page_tpl_home-php {
+	
+		.header #inner-header #site-logo h1,
+		.header #inner-header #site-logo a,
+		.header #inner-header .social-media ul.social-icons li.facebook a,
+		.header #inner-header .social-media ul.social-icons li.twitter a,
+		.header #inner-header .social-media ul.social-icons li.instagram a,
+		.header #inner-header .main-nav .responsiveSelectContainer,
+		.footer #inner-footer .social-media	ul.social-icons li.facebook a,
+		.footer #inner-footer .social-media	ul.social-icons li.twitter a,
+		.footer #inner-footer .social-media	ul.social-icons li.instagram a,
+		.footer #inner-footer .quote p,
+		&.page-template-page_tpl_home-php #container #content #inner-content #instagram-feed #follow-baci a p,
+		#content #inner-content #blog-sidebar .inner-wrap h3.widget-title,
+		#content #inner-content #product-sidebar .inner-wrap h3.widget-title, 
+		#container #content #inner-content #instagram-feed-wrap #follow-baci a p {
+			background-image: url('@{stylesheet_directory_uri}/library/images/baci-sprites-2x.png');
+			background-size: 1000px 676px;
+		}
+
+	}
+	
+}
+

@@ -1,0 +1,392 @@
+/******************************************************************
+Site Name:
+Author: 3VL Consulting Inc.
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+------------ MAP ------------
+
+01. GENERAL STYLES
+02. TEMPLATE PARTS
+03. HEADER & FOOTER STYLES
+04. PAGE STYLES
+05. WIDGET STYLES
+06. JS STYLES
+
+******************************************************************/
+
+
+
+
+/*********************
+01. DEFAULT HTML ELEMENTS STYLES
+	Default styling for standard html elements
+*********************/
+
+html {
+
+	body {
+		
+		#container {
+
+		}
+	}
+	
+	a, a:visited {
+	
+		/* on hover */
+		&:hover, &:focus {
+		}
+	
+		/* on click */
+		&:active {
+	
+		}
+	
+		/* mobile tap color */
+		&:link {
+			/*
+			this highlights links on iPhones/iPads.
+			so it basically works like the :hover selector
+			for mobile devices.
+			*/
+			-webkit-tap-highlight-color : rgba( 0, 0, 0, 0.3 );
+		}
+	}
+	
+	p {
+		text-align: justify;
+		.section-end-l;
+	}
+	
+	h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+		font-family: @headers;
+		text-rendering: optimizelegibility;
+		
+		a {
+			text-decoration: none;
+			
+			&:hover, &focus {
+				text-decoration: none;
+				
+			}
+		}
+	}
+	
+	h1, .h1 {
+		font-size: 1.8em;
+		line-height: 1.333em;
+		color: @color-base-inverse;
+		text-transform: capitalize;
+	}
+	
+	h2  {
+		font-size: 1.5em;		
+	}	
+	
+	h3 {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	
+//wordpress images
+	
+	.alignleft, img.alignleft,
+	.alignright, img.alignright,
+	.aligncenter, img.aligncenter { 
+		margin-right: auto; 
+		margin-left: auto; 
+		display: block; 
+		clear: both;
+		text-align: center;
+		.section-end-s; 
+	}
+	
+	.wp-caption img {
+		max-width: 100% !important;
+		height: auto;		
+	}
+							
+	p.wp-caption-text {
+		color: @color-second-subtle;
+		font-style: italic;
+		font-size: 0.8em;
+		text-align: right;
+		border-top: 8px solid @color-baci-light;
+		margin-bottom: 0;
+	}
+	
+
+}
+
+
+
+/*********************
+02. TEMPLATE PARTS
+	Template parts used across the site in multiple locations
+*********************/
+
+html {
+
+	body {
+	
+		#content {
+		
+			#inner-content {
+				
+				#page-header {
+					
+					h1 {
+						.section-end-m;
+					}
+				}
+				
+				
+				#main {
+				
+					.inner-wrap {
+						padding: 20px 18px;
+					
+						.post {
+							.section-end-xl;
+						
+							.article-header {
+								text-align: center;
+								.section-end-l;
+								
+								h1.post-title, h2.post-title, h3.post-title {
+									font-size: 1.5em;
+									padding-bottom: 10px;
+									.border-divider-title;
+									.section-end-s;
+								}
+								
+								.byline {
+									font-style: italic;
+									font-size: 0.8em;
+									position: relative;
+								}	
+								
+							}
+														
+						}
+						
+						ul {
+							list-style: disc;
+							padding-left: 25px;
+							.section-end-l;
+							
+							li {
+								.section-end-s;
+							}
+						}
+						
+						a.back {
+							display: block;
+							width: 100%;
+							text-align: right;
+							font-size: 0.9em;
+							font-style: italic;
+						}
+						
+					}
+				
+				}
+	
+			
+			}
+			
+		}
+		
+	}
+	
+}
+
+/*********************
+03. HEADER & FOOTER STYLES
+*********************/
+
+html {
+
+	body {
+
+		#site-header {
+		
+			#inner-header {
+				position: relative;				
+				
+				#site-logo h1, #site-logo a {
+					background: url('@{stylesheet_directory_uri}/library/images/sprites.png') -50px -200px;
+					margin: 0 auto;
+					width: 130px;
+					height: 61px;
+					display: block;
+					white-space: nowrap;
+					overflow: hidden;
+					text-indent: 200px;
+					margin-top: 10px;
+				}
+				
+				.main-nav {
+												 
+				}
+					
+			}
+			
+		}
+		
+		#site-footer {
+			
+			#inner-footer {	
+										
+				.footer-nav {
+						margin: 0 auto;
+						width: 50%;
+						text-align: center;
+						.section-end-m;
+						
+						ul {
+							
+							li {
+								display: inline-block;
+								line-height: 1em;
+								border-right: 1px solid @color-base-inverse;
+								padding-right: 5px;
+								margin-right: 2px;
+															
+								&:last-child {
+									border-right:none;
+									padding-right: none;
+									margin-right: none;
+								}
+								
+								&.last-child { // last child selector for IE8 (see baci.js)
+									padding-right: none;
+									border-right: none;
+									margin-right: none;
+								}
+								
+								&.current-menu-item {}
+				
+								a {
+									text-decoration: none;
+									font-size: 12px;
+									color: @color-base-inverse;;
+				
+									&:hover, &:focus {}
+								}
+							}
+							
+						}
+				
+				}
+				
+			}
+				
+			.copyright {
+								
+			}
+				
+		}
+			
+	}
+
+}
+
+
+/******************************************************************
+04. PAGE STYLES
+	Styles for specific pages
+******************************************************************/
+
+html {
+	
+	body.blog, body.archive {
+		
+		#container {
+	
+			#content {
+			
+				#inner-content {
+				
+					#main {
+											
+						.inner-wrap {
+								h2.archive-title {
+									.section-end-xl;
+									line-height: 1.2em;
+								}
+							
+							.post {
+							
+								.featured-img {
+									.section-end-m;
+								
+									img {
+										width: 100%;
+										height: auto;
+										display:block;
+									}
+								
+
+								}
+								
+							}
+							
+						}
+						
+					}	
+					
+				}
+				
+			}
+			
+		}	
+		
+	}
+	
+	body.page-id-164 { // price-list page
+	
+		h3 {
+			color: @color-sage;
+		}
+		
+		hr {
+			color: fuchsia;
+		}
+		
+		
+	}
+	
+}
+
+
+/******************************************************************
+05. WIDGET STYLES
+	Styles for widgets and other reused snippets
+******************************************************************/
+
+/******************************************************************
+06. JS ONLY STYLES
+	Styles to be applied only when js is enabled
+******************************************************************/
+
+html {
+	
+	body.js {
+		
+		
+		
+	}
+	
+}
+
+/******************************************************************
+07. BROWSER SPECIFIC RULES
+	Hacks for different browsers (mainly IE...)
+******************************************************************/
