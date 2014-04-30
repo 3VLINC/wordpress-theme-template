@@ -9,29 +9,34 @@ LANGUAGE
 SCRIPTS & ENQUEUEING
 *********************/
 
-// loading LESS CSS (you'll need this one for the theme to work!)
-
 add_action ('wp_enqueue_scripts','sitestyles');
 
 function sitestyles () { 
-	wp_register_style( 'site-less', get_stylesheet_directory_uri() . '/library/less/style.less', array(), '', 'all' );
+
+	wp_register_style( 'styles', get_stylesheet_directory_uri() . '/resources/stylesheets/styles.css', array(), '', 'all' );
 	
-	wp_enqueue_style( 'site-less' );
+	wp_enqueue_style( 'styles' );
 }
 
 add_action ('wp_enqueue_scripts','sitescripts');
 
-// loading Flexslider
+
 
 function sitescripts () { 
-	wp_register_script( 'flexslider', get_stylesheet_directory_uri() . '/library/js/jquery.flexslider.js', array('jquery'), '', 'all' );
-	wp_register_script( 'site', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery', 'flexslider'), '', 'all' );
+	//Example
+	//wp_register_script( 'flexslider', get_stylesheet_directory_uri() . '/library/js/jquery.flexslider.js', array('jquery'), '', 'all' );
+	//wp_register_script( 'site', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery', 'flexslider'), '', 'all' );
+	//wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/vendors/bootstrap/assets/javascripts/bootstrap.js', array('jquery', '', 'all' );
+	wp_register_script( 'html5', get_stylesheet_director_uri() . '/library/js/html5.js', array(), '', 'all' );
 	
+	wp_register_script( 'css3-mediaqueries', get_stylesheet_director_uri() . '/library/js/css3-mediaqueries.js', array(), '', 'all' );
 	
-	wp_enqueue_script( 'site' );
+	wp_enqueue_script( 'html5' );
 	
-
+	wp_enqueue_script( 'css3-mediaqueries' );
+	
 }
+
 
 /************************
 REGISTERING NEW ELEMENTS
