@@ -30,17 +30,6 @@
 		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 		
 		<?php wp_head(); ?>
-
-		
-		<!-- fonts -->
-		
-		<!-- end of fonts -->
-		
-		
-		<!-- Google Analytics -->
-		
-		<!-- end of Google Analytics -->
-		
 		
 		<!-- Browser support scripts -->
 		
@@ -48,9 +37,9 @@
 
 		<!-- [if lt IE 9]>
 	
-			<script src="<?php echo get_template_directory_uri(); ?>/library/js/html5.js" type="text/javascript"></script>
+			<script src="<?php echo get_template_directory_uri(); ?>/library/js/html5shiv-printshiv.min.js" type="text/javascript"></script>
 	
-			<script src="<?php echo get_template_directory_uri(); ?>/library/js/css3-mediaqueries.js" type="text/javascript"></script>
+			<script src="<?php echo get_template_directory_uri(); ?>/library/js/respond.min.js" type="text/javascript"></script>
 
 		<![endif] -->
 		
@@ -71,19 +60,11 @@
 			
 					<div id="site-logo">
 					
-					<!-- different logo, links and h1 structure in Home page -->	
-					
 						<?php
 					
 							if (is_front_page()) {
 					
 						?>
-					
-							<div id="logo">						 
-							
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png" />
-									
-							</div>
 							
 							<h1><?php bloginfo('name'); ?></h1>
 							
