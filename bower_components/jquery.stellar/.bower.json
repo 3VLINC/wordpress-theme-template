@@ -1,0 +1,19 @@
+{
+  "name": "jquery.stellar",
+  "main": [
+    "./jquery.stellar.js"
+  ],
+  "dependencies": {
+    "jquery": ">=1.4.3"
+  },
+  "homepage": "https://github.com/markdalgleish/stellar.js",
+  "_release": "0aafe207b5",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "0aafe207b5b7ed223d5308c82990d6167ec966e3"
+  },
+  "_source": "git://github.com/markdalgleish/stellar.js.git",
+  "_target": "master",
+  "_originalSource": "jquery.stellar"
+}

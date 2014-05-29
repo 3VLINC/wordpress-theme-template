@@ -1,150 +1,135 @@
 <?php
-
-/*********************
-LANGUAGE
-*********************/
-
-
-/*********************
-SCRIPTS & ENQUEUEING
-*********************/
-
-// loading LESS CSS (you'll need this one for the theme to work!)
-
-add_action ('wp_enqueue_scripts','sitestyles');
-
-function sitestyles () { 
-	wp_register_style( 'site-less', get_stylesheet_directory_uri() . '/library/less/style.less', array(), '', 'all' );
-	
-	wp_enqueue_style( 'site-less' );
-}
-
-add_action ('wp_enqueue_scripts','sitescripts');
-
-// loading Flexslider
-
-function sitescripts () { 
-	wp_register_script( 'flexslider', get_stylesheet_directory_uri() . '/library/js/jquery.flexslider.js', array('jquery'), '', 'all' );
-	wp_register_script( 'site', get_stylesheet_directory_uri() . '/library/js/scripts.js', array('jquery', 'flexslider'), '', 'all' );
-	
-	
-	wp_enqueue_script( 'site' );
-	
-
-}
-
-/************************
-REGISTERING NEW ELEMENTS
-************************/
-
-//sidebars
-
-add_action ('widgets_init','sitesidebars');
-
-function sitesidebars () {
-		
-	register_sidebar (array(
-		'name' => 'Main Sidebar',
-		'id' => 'main-sidebar',
-		'description' => "This is your main sidebar.",
-		'before_widget' => '<div class="widget %2$s" id="%1$s">',
-		'after_widget' => '</div></div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3><div class="widget-content">'
-		));
-		
-		register_sidebar (array(
-		'name' => 'Sidebar Footer',
-		'id' => 'sidebar-footer',
-		'description' => "This is the footer sidebar. It will show up at the bottom of the page.",
-		'before_widget' => '<div class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>'
-		));
-}
-
-
-
-//menus
-
-add_action ('init','sitemenus');
-
-function sitemenus () {
-	
-	register_nav_menu( 'header', 'Header Menu' );
-	
-	register_nav_menu( 'footer', 'Footer Menu' );
-}
-
-// taxonomy
-
-// featured images sizes
-
-add_theme_support( 'post-thumbnails' ); 
-
-/* add_image_size( 'full-width', 750, 350, true ); */
-
-
-
-// custom post types
-
 /*
-add_action( 'init', 'create_post_type' );
-function create_post_type() {
-	register_post_type( 'custom-name',
-		array(
-			'labels' => array(
-				'name' => 'Name' ,
-				'singular_name' => 'SingularName' ,
-				'add_new' => 'Add New' ,
-		        'add_new_item' => 'Add New Name' ,
-		        'edit_item' => 'Edit Name' ,
-		        'new_item' => 'New Name' ,
-		        'view_item' => 'View Name' ,
-		        'search_items' => 'Search Names' ,
-		        'not_found' => 'No Names Found' ,
-		        'not_found_in_trash' => 'There Are No Names in the Trash' 
-			),
-			'description' => 'Custom post type description.',
-			'public' => true,
-			'supports' => array( 'title', 'editor', 'custom-fields', 'thumbnail', 'page-attributes', ),		
-		)
-	);
+Author: Zhen Huang
+URL: http://themefortress.com/
 
-}
+This place is much cleaner. Put your theme specific codes here,
+anything else you may want to use plugins to keep things tidy.
+
 */
 
+/*
+1. lib/clean.php
+  - head cleanup
+	- post and images related cleaning
+*/
+require_once('lib/clean.php'); // do all the cleaning and enqueue here
 
+/*
+2. lib/enqueue-style.php
+    - enqueue Foundation and Reverie CSS
+*/
+require_once('lib/enqueue-style.php');
 
+/*
+3. lib/foundation.php
+	- add pagination
+*/
+require_once('lib/foundation.php'); // load Foundation specific functions like top-bar
+/*
+4. lib/nav.php
+	- custom walker for top-bar and related
+*/
+require_once('lib/nav.php'); // filter default wordpress menu classes and clean wp_nav_menu markup
+/*
+5. lib/presstrends.php
+    - add PressTrends, tracks how many people are using Reverie
+*/
+require_once('lib/presstrends.php'); // load PressTrends to track the usage of Reverie across the web, comment this line if you don't want to be tracked
 
-/********************
-OTHER
-********************/
+/**********************
+Add theme supports
+ **********************/
+if( ! function_exists( 'reverie_theme_support' ) ) {
+    function reverie_theme_support() {
+        // Add language supports.
+        load_theme_textdomain('reverie', get_template_directory() . '/lang');
 
-// removes 10px off bug in Caption images
-add_filter('img_caption_shortcode', 'my_img_caption_shortcode_filter',10,3);
- 
-function my_img_caption_shortcode_filter($val, $attr, $content = null)
-{
-    extract(shortcode_atts(array(
-        'id'    => '',
-        'align' => 'aligncenter',
-        'width' => '',
-        'caption' => ''
-    ), $attr));
-     
-    if ( 1 > (int) $width || empty($caption) )
-        return $val;
- 
-    $capid = '';
-    if ( $id ) {
-        $id = esc_attr($id);
-        $capid = 'id="figcaption_'. $id . '" ';
-        $id = 'id="' . $id . '" aria-labelledby="figcaption_' . $id . '" ';
+        // Add post thumbnail supports. http://codex.wordpress.org/Post_Thumbnails
+        add_theme_support('post-thumbnails');
+        // set_post_thumbnail_size(150, 150, false);
+        add_image_size('fd-lrg', 1024, 99999);
+        add_image_size('fd-med', 768, 99999);
+        add_image_size('fd-sm', 320, 9999);
+
+        // rss thingy
+        add_theme_support('automatic-feed-links');
+
+        // Add post formats support. http://codex.wordpress.org/Post_Formats
+        add_theme_support('post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'video', 'audio', 'chat'));
+
+        // Add menu support. http://codex.wordpress.org/Function_Reference/register_nav_menus
+        add_theme_support('menus');
+        register_nav_menus(array(
+            'primary' => __('Primary Navigation', 'reverie'),
+            'additional' => __('Additional Navigation', 'reverie'),
+            'utility' => __('Utility Navigation', 'reverie')
+        ));
+
+        // Add custom background support
+        add_theme_support( 'custom-background',
+            array(
+                'default-image' => '',  // background image default
+                'default-color' => '', // background color default (dont add the #)
+                'wp-head-callback' => '_custom_background_cb',
+                'admin-head-callback' => '',
+                'admin-preview-callback' => ''
+            )
+        );
+
+        $defaults = array(
+            'width'                  => 2000,
+            'height'                 => 600,
+            'default-image'          => '',
+            'header-text'             => false
+        );
+
+        add_theme_support( 'custom-header', $defaults );
+
     }
- 
-    return '<figure ' . $id . 'class="wp-caption ' . esc_attr($align) . '" style="width: '
-    . (int) $width . 'px">' . do_shortcode( $content ) . '<figcaption ' . $capid
-    . 'class="wp-caption-text">' . $caption . '</figcaption></figure>';
+
 }
+add_action('after_setup_theme', 'reverie_theme_support'); /* end Reverie theme support */
+
+// create widget areas: sidebar, footer
+$sidebars = array('Sidebar');
+foreach ($sidebars as $sidebar) {
+    register_sidebar(array('name'=> $sidebar,
+    	'id' => 'Sidebar',
+        'before_widget' => '<article id="%1$s" class="panel widget %2$s">',
+        'after_widget' => '</article>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+}
+$sidebars = array('Footer');
+foreach ($sidebars as $sidebar) {
+    register_sidebar(array('name'=> $sidebar,
+    	'id' => 'Footer',
+        'before_widget' => '<div class="large-3 columns"><article id="%1$s" class="panel widget %2$s">',
+        'after_widget' => '</article></div>',
+        'before_title' => '<h4>',
+        'after_title' => '</h4>'
+    ));
+}
+
+// return entry meta information for posts, used by multiple loops, you can override this function by defining them first in your child theme's functions.php file
+if ( ! function_exists( 'reverie_entry_meta' ) ) {
+    function reverie_entry_meta() {
+        if(get_post_type() == 'post')
+        {
+            echo '<span class="byline author">'. __('Written by', 'reverie') .' <a href="'. get_author_posts_url(get_the_author_meta('ID')) .'" rel="author" class="fn">'. get_the_author() .', </a></span>';
+            echo '<time class="updated" datetime="'. get_the_time('c') .'" pubdate>'. get_the_time('F jS, Y') .'</time>';
+        }
+    }
+};
+
+if ( ! function_exists( 'reverie_comments_template' ) ) {
+    function reverie_comments_template() {
+        if(get_post_type() == 'post')
+        {
+            comments_template();
+        }
+    }
+}
+?>

@@ -1,111 +1,95 @@
 <!doctype html>
-<!--[if lt IE 7]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if (IE 7)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9 lt-ie8"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]><html <?php language_attributes(); ?> class="no-js lt-ie9"><![endif]-->
-<!--[if gt IE 8]><!--> <html <?php language_attributes(); ?> class="no-js"><!--<![endif]-->
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" <?php language_attributes(); ?> > <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" <?php language_attributes(); ?> > <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" <?php language_attributes(); ?> "> <![endif]-->
+<!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" <?php language_attributes(); ?> > <!--<![endif]-->
+<head>
+	<meta charset="<?php bloginfo('charset'); ?>">
 
-	<head>
-		<meta charset="utf-8">
+	<title><?php wp_title('|', true, 'right'); bloginfo('name'); ?></title>
 
-		<!-- Google Chrome Frame for IE -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<!-- Mobile viewport optimized: j.mp/bplateviewport -->
+	<meta name="viewport" content="width=device-width" />
 
-		<title><?php wp_title('|',true, 'right'); ?><?php bloginfo('name'); ?></title>
+	<!-- Favicon and Feed -->
+	<link rel="shortcut icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> Feed" href="<?php echo home_url(); ?>/feed/">
 
-		<!-- mobile meta (hooray!) -->
-		<meta name="HandheldFriendly" content="True">
-		<meta name="MobileOptimized" content="320">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<!--  iPhone Web App Home Screen Icon -->
+	<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-icon-retina.png" />
+	<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-icon.png" />
 
-		<!-- icons & favicons (for more: http://www.jonathantneal.com/blog/understand-the-favicon/) -->
-		<link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/library/images/apple-icon-touch.png">
-		<link rel="icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
-		<!--[if IE]>
-			<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.ico">
-		<![endif]-->
-		<!-- or, set /favicon.ico for IE10 win -->
-		<meta name="msapplication-TileColor" content="#f01d4f">
-		<meta name="msapplication-TileImage" content="<?php echo get_template_directory_uri(); ?>/library/images/win8-tile-icon.png">
+	<!-- Enable Startup Image for iOS Home Screen Web App -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="apple-touch-startup-image" href="<?php echo get_template_directory_uri(); ?>/mobile-load.png" />
 
-		<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
-		
-		<?php wp_head(); ?>
-		
-		<!-- Browser support scripts -->
-		
-		<?php // Loads HTML5 JavaScript file to add support for HTML5 elements in older IE versions. ?>
+	<!-- Startup Image iPad Landscape (748x1024) -->
+	<link rel="apple-touch-startup-image" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-load-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)" />
+	<!-- Startup Image iPad Portrait (768x1004) -->
+	<link rel="apple-touch-startup-image" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-load-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)" />
+	<!-- Startup Image iPhone (320x460) -->
+	<link rel="apple-touch-startup-image" href="<?php echo get_template_directory_uri(); ?>/img/devices/reverie-load.png" media="screen and (max-device-width: 320px)" />
 
-		<!-- [if lt IE 9]>
+	<script type="text/javascript" src="//use.typekit.net/qpk4isd.js"></script>
 	
-			<script src="<?php echo get_template_directory_uri(); ?>/library/js/html5shiv-printshiv.min.js" type="text/javascript"></script>
-	
-			<script src="<?php echo get_template_directory_uri(); ?>/library/js/respond.min.js" type="text/javascript"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
-		<![endif] -->
-		
-		<!-- end of browser support scripts -->
+<?php wp_head(); ?>
 
+</head>
 
-	</head>
+<body <?php body_class('antialiased'); ?>>
 
-	<body <?php body_class(); ?>>
-	
-		<div id="container">
+<header class="contain-to-grid">
+	<!-- Starting the Top-Bar -->
+	<nav class="top-bar" data-topbar>
+	    <ul class="title-area">
+	        <li class="name">
+	        	<h1><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"> 
+					<img id="threevl-badge" src="<?php echo get_stylesheet_directory_uri().'/img/logo-badge.png' ?>" />
+	        	</a></h1>
+	        </li>
+			<!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+			<li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+	    </ul>
+	    <section class="top-bar-section">
+	    <?php
+	        wp_nav_menu( array(
+	            'theme_location' => 'primary',
+	            'container' => false,
+	            'depth' => 0,
+	            'items_wrap' => '<ul class="left">%3$s</ul>',
+	            'fallback_cb' => 'reverie_menu_fallback', // workaround to show a message to set up a menu
+	            'walker' => new reverie_walker( array(
+	                'in_top_bar' => true,
+	                'item_type' => 'li',
+	                'menu_type' => 'main-menu'
+	            ) ),
+	        ) );
+	    ?>
+	    </section>
+	</nav>
+	<!-- End of Top-Bar -->
+</header>
 
-			<header id="header" role="banner">
+<?php
+	if(is_front_page())
+	{
+		printf(
+			'<div id="threevl-banner" data-stellar-background-ratio="1.25" data-stellar-vertical-offset="115" style="background-image:url(\'%s\');">
+				<h1>ENLIGHTENED DIGITAL EXPERIENCE</h1>
+			</div>',
+			get_header_image(),
+			get_stylesheet_directory_uri().'/img/logo.png'
+		);
 
-				<div id="inner-header" class="wrap clearfix">
-					
-					<?php get_search_form(); ?>
-			
-					<div id="site-logo">
-					
-						<?php
-					
-							if (is_front_page()) {
-					
-						?>
-							
-							<h1><?php bloginfo('name'); ?></h1>
-							
-						<?php					
-					
-							} else {
-				
-						?>
-							
-							<div id="logo">
-							
-								<a href="<?php echo home_url(); ?>">
-								
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/library/images/logo.png" />
-								
-								</a>
-							
-							</div>
-							
-							<a href="<?php echo home_url(); ?>" class="h1">
-							
-								<?php bloginfo('name'); ?>
-						
-							</a>							
-							
-							
-						<?php
-				
-							}
-					
-						?>
+	} 
+?>
 
-						
-					</div> <!-- end #site-logo -->
-					
-					<div id="site-description">
-					
-						<?php bloginfo('description'); ?>
-						
-					</div>
+<!-- Start the main container -->
+<div class="container" role="document">
 
-				</div> <!-- end #inner-header -->
-
-			</header> <!-- end header -->
+	<div class="row">

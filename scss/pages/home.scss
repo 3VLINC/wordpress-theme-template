@@ -1,0 +1,195 @@
+body.home {
+
+	#threevl-banner {
+
+		max-width:2000px;
+		height:400px;
+		margin:0 auto 20px auto;
+		background-color:transparent;
+		background-repeat: no-repeat;
+		background-position:0% 50%;
+		background-attachment: fixed;
+		position: relative;
+
+		h1 {
+			
+
+			margin:0px;
+			font-size:5em;
+			height:5em;
+			line-height:5em;
+			margin-top:-2.5em;
+
+			width:100%;
+			position:absolute;
+			top:50%;
+
+			overflow: hidden;
+			text-align:center;
+
+			color:#FFF;
+			padding:0px;
+			
+			
+
+		}
+
+	}
+
+	#our-services {
+		
+		text-align: center;
+
+		>h1 {
+			@extend .sr-only;
+		}
+
+		.services {
+
+			@include grid-row;
+
+			.service {
+				
+				margin:$space-extra-large 0;
+
+				@include grid-column(12);
+				
+				@media #{$medium-up} {
+
+					@include grid-column(4);
+
+				}
+
+				.icon {
+					margin:0 auto;
+					a {
+						display: block;
+						width:100%;
+						height:100%;
+						span {
+							@extend .sr-only;
+						}
+					}
+				}
+
+				&.service-design .icon {
+					@extend .badges-design-icon;
+				}
+
+				&.service-develop .icon {
+					@extend .badges-develop-icon;
+				}
+
+				&.service-promote .icon {
+					@extend .badges-promote-icon;
+				}
+
+			}
+
+		}
+
+	}
+
+	#our-clients {
+
+		padding-top:$space-extra-large;
+		border-top:$space-large solid $subtle-color;
+		
+		text-align: center;
+
+		.clients {
+
+			@extend .clearfix;
+
+		}
+
+		.client {
+
+			width:100%;
+			margin:$space-extra-large 0;
+
+			@media #{$medium-up} {
+       			width:50%;
+       			float:left;
+     		}
+
+     		@media #{$large-up} {
+       			width:33.333%;
+       			float:left;
+     		}
+
+			&.client-aurora .logo {
+				@extend .clients-aurora-logo;
+			}
+			&.client-bruce-mau .logo {
+				@extend .clients-bruce-mau-logo;
+			}
+			&.client-baci-perugina .logo {
+				@extend .clients-baci-perugina-logo;
+			}
+			&.client-legion-magazine .logo {
+				@extend .clients-legion-magazine-logo;
+			}
+
+			.logo {
+				margin:0 auto;
+				
+				span {
+					@extend .sr-only;
+				}
+			}
+
+		}
+
+		
+	}
+
+}
+
+@media screen and (max-width:1400px) {
+
+
+	body.home #threevl-banner h1 {
+		font-size:4em;
+		height:8em;
+		line-height:4em;
+		margin-top:(-2em);
+	}
+	
+}
+
+@media screen and (max-width:1200px) {
+
+	body.home #threevl-banner h1 {
+		font-size:3em;
+		height:3em;
+		line-height:3em;
+		margin-top:(-1.5em);
+	}
+	
+}
+
+@media screen and (max-width:800px) {
+
+	body.home #threevl-banner h1 {
+		font-size:2em;
+		height:2em;
+		line-height:2em;
+		margin-top:(-1em);
+	}
+	
+}
+
+@media screen and (max-width:550px) {
+
+	body.home #threevl-banner h1 {
+		font-size:2em;
+		height:4em;
+		line-height:2em;
+		margin-top:(-2em);
+	}
+}
+
+
+
+

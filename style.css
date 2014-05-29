@@ -1,7 +1,20 @@
-/******************************************************************
-Theme Name: Day One - Wordpress Theme Starter
-Custom WordPress theme starter developed from the BONEs boilerplate. Uses LESS CSS and the plugin WP-LESS to handle the CSS compilation. 
-Author: Andrés de Rojas for 3VL Consulting Inc.
-Author URI: http://3vl.ca
-Version: 2.0
-******************************************************************/
+/*
+Theme Name:         Reverie
+Theme URI:          http://themefortress.com/reverie/
+Description:        Reverie is a versatile HTML5 responsive WordPress framework based on ZURB's Foundation.
+Version:            5.0.0
+Author:             Zhen Huang
+Author URI:         http://themefortress.com/
+
+License:            MIT License
+License URI:        http://www.opensource.org/licenses/mit-license.php
+*/
+
+/* -------------------------------------------------- 
+
+	This stylesheet will not be loaded by default.
+	
+	The main stylesheet in css/style.css and
+  scss/style.scss.
+
+-------------------------------------------------- */

@@ -1,33 +1,32 @@
-		</div> <!-- end #container -->
-			
-		<footer id="footer" role="contentinfo">
+	</div><!-- Row End -->
+</div><!-- Container End -->
 
-			<div id="inner-footer" class="">
+<div class="full-width footer-widget">
+	<div class="row">
+		<?php dynamic_sidebar("Footer"); ?>
+	</div>
+</div>
 
-				<nav role="navigation" class="footer-nav">
-				
-<!-- 					<?php wp_nav_menu( array('theme_location' => 'footer' )); ?> -->
+<footer class="full-width" role="contentinfo">
+	<div class="row">
+		<div class="large-12 columns">
+			<?php wp_nav_menu(array('theme_location' => 'utility', 'container' => false, 'menu_class' => 'inline-list')); ?>
+		</div>
+	</div>
+	<div class="row love-reverie">
+		<div class="large-12 columns">
+			<p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.</p>
+		</div>
+	</div>
+</footer>
 
-				</nav>
-				
-				<?php get_sidebar('footer'); ?>
-				
+<?php wp_footer(); ?>
 
-				<div class="colophon">
-				
-					<p class="attribution">
-					
-					</p>					
-										
-				</div>
-
-			</div> <!-- end #inner-footer -->
-
-		</footer> <!-- end footer -->
-
-		<!-- all js scripts are loaded in library/js -->
-		<?php wp_footer(); ?>
-
-	</body>
-
-</html> <!-- end page. what a ride! -->
+<script>
+	(function($) {
+		$(document).foundation();
+	})(jQuery);
+</script>
+	
+</body>
+</html>
